@@ -6,5 +6,6 @@ Group Project carried out by :-
 
 > Reuben Uzor
 
-> Osondu George 
- File main.h contains function headers.
+> Osondu George
+
+File main.h contains function headers.

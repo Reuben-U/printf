@@ -8,7 +8,7 @@
 int _printf(const char *format, ...)
 {
 	va_list(printfarg);
-	char *str;
+	char *str, *ptr;
 	char buffer[100] = {0};
 	int i = 0, j = 0;
 
@@ -21,18 +21,17 @@ int _printf(const char *format, ...)
 
 			switch (format[i])
 			{
-				case 'c' :
+				case 'c':
 					buffer[j] = (char)va_arg(printfarg, int);
 					j++;
 					break;
-
-				case 's' :
+				case 's':
 					str = va_arg(printfarg, char *);
-					strcpy(buffer[j], str);
+					ptr = &buffer[j];
+					strcpy(ptr, str);
 					j += strlen(str);
 					break;
-
-				case '%' :
+				case '%':
 					buffer[j] = format[i];
 					j++;
 					break;
@@ -45,7 +44,7 @@ int _printf(const char *format, ...)
 		}
 		i++;
 	}
-	write(1, &buffer, strlen(buffer));
+	fwrite(buffer, j, 1, stdout);
 	va_end(printfarg);
 	return (j);
 }
